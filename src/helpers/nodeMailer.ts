@@ -31,8 +31,13 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
       from: '"ADMIN APP 👻" <admin@gmail.com>',
       to: email,
       subject:
-        emailType === "VERIFY" ? "Verify your account" : "Reset your password",
-      html: `<p>click <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify Your Email" : "reset your password"}</p>`,
+        emailType === "VERIFY" ? "Verify Your Account" : "Reset Your Password",
+      html: `<p>Click <a href="${process.env.DOMAIN}/${emailType === "VERIFY" ? "verifyEmail" : "resetPassword"}?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"}
+      <br>
+      Or copy and paste the link below in your browser.
+      <br>
+      ${process.env.DOMAIN}/${emailType === "VERIFY" ? "verifyEmail" : "resetPassword"}?token=${hashedToken}
+      </p>`,
     });
 
     console.log("Message sent: %s", resp);

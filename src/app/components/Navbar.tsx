@@ -17,11 +17,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: false },
   { name: "Products", href: "/products", current: false },
   { name: "Profile", href: "/profile", current: false },
-  { name: "Signup", href: "/signup", current: false },
-  { name: "Login", href: "/login", current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -51,7 +49,7 @@ export default function NavBar() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-700">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -71,7 +69,7 @@ export default function NavBar() {
                 <div className="flex shrink-0 items-center">
                   <img
                     alt="Your Company"
-                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                    src="./okta.png"
                     className="h-8 w-auto"
                   />
                 </div>

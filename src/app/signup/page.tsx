@@ -22,7 +22,7 @@ export default function SignupPage() {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
       toast.success(response.data.message, { duration: 4000 });
-      router.push("/login");
+      router.push("/verifyEmail");
     } catch (error: any) {
       toast.error(error.message);
     } finally {

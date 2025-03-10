@@ -42,23 +42,26 @@ export default function VerifyEmailPage() {
           className="mx-auto h-30 w-auto"
         />
         <Toaster />
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-          Verify Email
-        </h2>
-
-        <button className="mt-10 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          {token ? token : "notoken"}
-        </button>
-
         <p className="mt-10 text-center text-sm/6 text-gray-500"></p>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
-        {verified && (
-          <p className="mt-10 text-center text-sm/6 text-gray-500">
-            Your email has been verified successfully. You can now login.
-            <Link href="/login">Login Here</Link>
-          </p>
-        )}
+        {verified ?
+          <div>
+            <p className="mt-10 text-center text-sm/6 text-gray-600">
+              Your email has been verified successfully. You can now login.
+            </p>
+            <button className="mt-10 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <Link href="/login">Login Here</Link>
+            </button>
+          </div>
+          :
+          <div>
+            <p className="mt-10 text-center text-sm/6 text-gray-600">
+              You will receive a magic link on your email to verify your account.
+            </p>
+          </div>
+
+        }
         {error && (
           <p className="mt-10 text-center text-sm/6 text-red-500">{error}</p>
         )}

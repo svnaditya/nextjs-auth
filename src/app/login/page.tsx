@@ -30,7 +30,7 @@ export default function LoginPage() {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
       toast.success(response.data.message, { duration: 4000 });
-      router.push("/profile");
+      router.push("/products");
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.error);
@@ -87,7 +87,7 @@ export default function LoginPage() {
 
               </label>
               <div className="text-sm">
-                <Link href="/reset-password" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
+                <Link href="/resetPassword" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
               </div>
             </div>
 
