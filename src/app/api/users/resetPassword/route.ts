@@ -12,20 +12,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Token not found" }, { status: 400 });
     }
     if (!password) {
-      return NextResponse.json({ message: "Password not found" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Password not found" },
+        { status: 400 },
+      );
     }
     const foundUser = await user.findOne({
-        forgotPasswordToken: token,
-        forgotPasswordTokenExpiry: { $gt: Date.now() },
+      forgotPasswordToken: token,
+      forgotPasswordTokenExpiry: { $gt: Date.now() },
     });
 
     if (!foundUser) {
-      return NextResponse.json({ message: "Invalid or expired token" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Invalid or expired token" },
+        { status: 400 },
+      );
     }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    
+
     foundUser.isVerified = true;
     foundUser.forgotPasswordToken = null;
     foundUser.forgotPasswordTokenExpiry = null;

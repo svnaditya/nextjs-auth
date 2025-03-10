@@ -39,9 +39,10 @@ export default function NavBar() {
       router.push("/login");
     } catch (error) {
       console.error("[Navbar] Logout error:", error);
-      const errorMessage = error instanceof AxiosError 
-        ? error.response?.data?.message || error.message
-        : "An error occurred during logout";
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.message || error.message
+          : "An error occurred during logout";
       toast.error(errorMessage);
     } finally {
       setIsLoggingOut(false);
@@ -84,7 +85,7 @@ export default function NavBar() {
                           item.current
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          "rounded-md px-3 py-2 text-sm font-medium",
                         )}
                       >
                         {item.name}
@@ -121,7 +122,7 @@ export default function NavBar() {
                           href="/profile"
                           className={classNames(
                             active ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm text-gray-700"
+                            "block px-4 py-2 text-sm text-gray-700",
                           )}
                         >
                           Your Profile
@@ -135,7 +136,7 @@ export default function NavBar() {
                           disabled={isLoggingOut}
                           className={classNames(
                             active ? "bg-gray-100" : "",
-                            "block w-full px-4 py-2 text-left text-sm text-gray-700 disabled:opacity-50"
+                            "block w-full px-4 py-2 text-left text-sm text-gray-700 disabled:opacity-50",
                           )}
                         >
                           {isLoggingOut ? "Signing out..." : "Sign out"}
@@ -159,7 +160,7 @@ export default function NavBar() {
                     item.current
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
+                    "block rounded-md px-3 py-2 text-base font-medium",
                   )}
                 >
                   {item.name}

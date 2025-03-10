@@ -84,10 +84,14 @@ export default function LoginPage() {
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Password
-
               </label>
               <div className="text-sm">
-                <Link href="/resetPassword" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
+                <Link
+                  href="/resetPassword"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                >
+                  Forgot password?
+                </Link>
               </div>
             </div>
 

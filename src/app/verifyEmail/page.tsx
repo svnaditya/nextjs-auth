@@ -45,7 +45,7 @@ export default function VerifyEmailPage() {
         <p className="mt-10 text-center text-sm/6 text-gray-500"></p>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
-        {verified ?
+        {verified ? (
           <div>
             <p className="mt-10 text-center text-sm/6 text-gray-600">
               Your email has been verified successfully. You can now login.
@@ -54,14 +54,14 @@ export default function VerifyEmailPage() {
               <Link href="/login">Login Here</Link>
             </button>
           </div>
-          :
+        ) : (
           <div>
             <p className="mt-10 text-center text-sm/6 text-gray-600">
-              You will receive a magic link on your email to verify your account.
+              You will receive a magic link on your email to verify your
+              account.
             </p>
           </div>
-
-        }
+        )}
         {error && (
           <p className="mt-10 text-center text-sm/6 text-red-500">{error}</p>
         )}

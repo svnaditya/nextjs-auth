@@ -10,7 +10,8 @@ export default function ResetPasswordPage() {
   const [token, setToken] = useState("");
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [passwordResetLinkSent, setPasswordResetLinkSent] = React.useState(false);
+  const [passwordResetLinkSent, setPasswordResetLinkSent] =
+    React.useState(false);
   const [user, setUser] = React.useState({
     email: "",
     password: "",
@@ -23,7 +24,6 @@ export default function ResetPasswordPage() {
       setButtonDisabled(true);
     }
   }, [user.email]);
-
 
   useEffect(() => {
     if (user.password) {
@@ -44,7 +44,10 @@ export default function ResetPasswordPage() {
       setLoading(true);
       const foundUser = await axios.get(`/api/users/me?email=${user.email}`);
       const userId = foundUser.data._id;
-      const response = await axios.post("/api/users/sendResetPasswordMail", { userId: userId, email: user.email });
+      const response = await axios.post("/api/users/sendResetPasswordMail", {
+        userId: userId,
+        email: user.email,
+      });
       setPasswordResetLinkSent(true);
       toast.success(response.data.message, { duration: 4000 });
     } catch (error: any) {
@@ -59,7 +62,10 @@ export default function ResetPasswordPage() {
     event.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/resetPassword", { token: token, password: user.password });
+      const response = await axios.post("/api/users/resetPassword", {
+        token: token,
+        password: user.password,
+      });
       toast.success(response.data.message, { duration: 4000 });
       router.push("/login");
     } catch (error: any) {
@@ -85,8 +91,9 @@ export default function ResetPasswordPage() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form action="#" method="POST" className="space-y-6">
-          {token ? ""
-            :
+          {token ? (
+            ""
+          ) : (
             <div>
               <label
                 htmlFor="email"
@@ -108,9 +115,9 @@ export default function ResetPasswordPage() {
                 />
               </div>
             </div>
-          }
+          )}
 
-          {token ?
+          {token ? (
             <div>
               <div className="mt-2">
                 <input
@@ -120,14 +127,17 @@ export default function ResetPasswordPage() {
                   required
                   autoComplete="password"
                   value={user.password}
-                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                   placeholder="Enter New Password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
             </div>
-
-            : ""}
+          ) : (
+            ""
+          )}
 
           <div>
             <button
@@ -140,17 +150,16 @@ export default function ResetPasswordPage() {
             </button>
           </div>
         </form>
-        {
-          passwordResetLinkSent ?
-            <div>
-              <p className="mt-10 text-center text-sm/6 text-gray-600">
-                You will receive a magic link on your email to Reset Your Password.
-              </p>
-            </div>
-            :
-            ""
-        }
-
+        {passwordResetLinkSent ? (
+          <div>
+            <p className="mt-10 text-center text-sm/6 text-gray-600">
+              You will receive a magic link on your email to Reset Your
+              Password.
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
