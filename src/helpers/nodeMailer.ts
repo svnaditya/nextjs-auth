@@ -40,7 +40,6 @@ export const sendMail = async ({ email, emailType, userId }: any) => {
       </p>`,
     });
 
-    console.log("Message sent: %s", resp);
   } catch (error: any) {
     throw new Error(error.message);
   }

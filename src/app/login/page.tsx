@@ -32,7 +32,6 @@ export default function LoginPage() {
       toast.success(response.data.message, { duration: 4000 });
       router.push("/products");
     } catch (error: any) {
-      console.log(error);
       toast.error(error.response.data.error);
     } finally {
       setLoading(false);
